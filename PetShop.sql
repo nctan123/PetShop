@@ -1,5 +1,6 @@
-﻿CREATE DATABASE PETSHOP;
+CREATE DATABASE PETSHOP;
 USE PETSHOP;
+
 
 -- Create the Accounts table
 CREATE TABLE Accounts (
@@ -241,7 +242,7 @@ GO
 -- Insert data into the Accounts table
 INSERT INTO Accounts (Email, Password, PhoneNumber, FullName, Register_Date, Role, Status)
 VALUES
-  ('account1@gmail.com', 'password123', '0123456789', 'John Doe', '2024-02-29', 'Admin', 1),
+  ('admin@gmail.com', '12345', '0123456789', 'John Doe', '2024-02-29', 'Admin', 1),
   ('account2@gmail.com', 'password123', '0123456789', 'Jane Smith', '2024-02-29', 'User', 1),
   ('account3@gmail.com', 'password123', '0123456789', 'Michael Johnson', '2024-02-29', 'User', 1),
   ('account4@gmail.com', 'password123', '0123456789', 'Emily Davis', '2024-02-29', 'User', 1),
@@ -390,55 +391,71 @@ VALUES
 -- Status 1 = done  | 0 = not done
 INSERT INTO Payments (Payment_date, Type_payment, Status)
 VALUES
-  ('2023-12-15 10:30:00', 2, 1),
+  ('2024-03-02 10:30:00', 2, 1),
    (NULL, 1, 0),
-  ('2023-12-17 09:15:00', 2, 1),
-  ('2023-12-18 17:30:00', 1, 1),
-  ('2023-12-19 11:00:00', 2 ,1),
-  ('2023-12-20 13:45:00', 1, 1),
-  ('2023-12-21 08:30:00', 1, 1),
-  ('2023-12-22 16:00:00', 2, 1),
-    (NULL, 1, 0),
-  ('2023-12-24 10:45:00', 1, 1)
+  (NULL, 2, 0),
+  ('2024-03-06 10:30:00', 1, 1),
+  (NULL, 1 ,0),
+  (NULL, 2, 0),
+  ('2024-03-09 08:30:00', 2, 1),
+(NULL, 2, 0),
+('2024-03-11 10:45:00', 1, 1),
+   (NULL, 1, 0)
+
   
 
 
 -- Insert data into the Feedback table
 INSERT INTO Feedback (Feedback_text, Reply_text, Reply_date, Status)
 VALUES
-('Great service! My pet loved it.', 'Thank you for your feedback!', '2024-02-28 11:00:00', 1),
+('Great service! My pet loved it.', 'Thank you for your feedback!', '2024-03-08 11:00:00', 1),
 ('Average service. Could be better.', NULL, NULL, 0),
-('Excellent grooming service!', 'We are glad you liked it!', '2024-02-29 10:30:00', 1),
+('Excellent grooming service!', 'We are glad you liked it!', '2024-03-09 10:30:00', 1),
 ('Wonderful experience! Highly recommended.', NULL, NULL, 0),
-('Not satisfied with the service. Disappointed.', NULL, NULL, 0)
+('Not satisfied with the service. Disappointed.', NULL, NULL, 0),
+('so great', NULL, NULL, 0),
+('too bad, i wish when i come back things will be better', NULL, NULL, 0)
+
 
 
 -- Insert data into the Orders table
 -- ( Status 1: waiting for confirmation, 2: confirmed 3 Delivering/waiting for checkin, 4 Delivered/Checked in 5 Cancel order 6 Done)
 INSERT INTO Orders (Acc_id, Total_price, Order_date, Payment_id, Feedback_id, Status)
 VALUES
-  (10, 500, '2023-12-15 10:30:00', 1, 1, 1),
-  (2, 800, '2023-12-16 14:45:00', 2, 2, 1),
-  (2, 350, '2023-12-17 09:15:00', 3, 3, 1),
-  (4, 650, '2023-12-18 17:30:00', 4, 4, 1),
-  (3, 450, '2023-12-19 11:00:00', 5, 5, 1),
-  (6, 700, '2023-12-20 13:45:00', 6, NULL, 1),
-  (7, 250, '2023-12-21 08:30:00', 7, NULL, 1),
-  (2, 900, '2023-12-22 16:00:00', 8, NULL, 1),
-  (3, 400, '2023-12-23 14:15:00', 9, NULL, 1),
-  (10, 750, '2023-12-24 10:45:00', 10, NULL, 1)
+  (6, 160, '2024-03-02 10:30:00', 1, 1, 1),
+  (2, 260, '2024-03-03 14:45:00', 2, 2, 1),
+  (4, 100, '2024-03-05 09:15:00', 3, 3, 1),
+  (3, 200, '2024-03-06 10:30:00', 4, 4, 1),
+  (5, 405, '2024-03-06 11:00:00', 5, 5, 1),
+  (3, 390, '2024-03-07 13:45:00', 6, 6, 1),
+  (2, 450, '2024-03-09 08:30:00', 7, 7, 1),
+  (4, 490, '2024-03-10 06:00:00', 8, NULL, 1), 
+  (7, 190, '2024-03-11 10:45:00', 9, NULL, 1),
+	(7, 65, '2024-03-11 16:45:00', 10, NULL, 1)
+
 
 
 -- Insert data into the OrdersDetails table
+
 INSERT INTO OrdersDetails (Order_id, Service_id, Pet_id, Start_time, End_time, Quantity, Status)
 VALUES
-(1, 1, 1, '2023-12-15 10:30:00', NULL, 1, 1),
-(2, 2, 2, '2023-12-16 14:45:00', NULL, 1, 1),
-(3, 3, 3, '2023-12-17 09:15:00', NULL, 1, 1),
-(4, 4, 4, '2023-12-18 17:30:00', NULL, 1, 1),
-(5, 5, 1, '2023-12-19 11:00:00', NULL, 1, 1),
-(6, 6, 6, '2023-12-20 13:45:00', NULL, 1, 1),
-(7, 7, 7, '2023-12-21 08:30:00', NULL, 1, 1),
-(8, 8, 8, '2023-12-22 16:00:00', NULL, 1, 1),
-(9, 9, 9, '2023-12-23 14:15:00', NULL, 1, 1),
-(10, 10, 10, '2023-12-24 10:45:00', NULL, 1, 1)
+(1, 23, 4, '2024-03-02 11:30:00', '2024-03-03 11:30:00', 1, 1),
+(1, 72, 4, '2024-03-02 11:30:00', NULL, 2, 1), 
+(1, 71, 4, '2024-03-02 11:30:00', NULL, 1, 1),
+(2, 5, 1, '2024-03-04 12:40:00', '2024-03-05 08:45:00', 1, 1),
+(2, 56, 1, '2024-03-04 14:40:00', NULL, 1, 1),
+(3, 3, 6, '2024-03-05 09:15:00', '2024-03-05 19:15:00', 1, 1),
+(4, 44, 3, '2024-03-06 10:30:00', NULL, 1, 1),
+(5, 29, 9, '2024-03-06 11:00:00', NULL, 1, 1),
+(5, 66, 9, '2024-03-06 11:00:00', NULL, 5, 1),
+(6, 38, 7, '2024-03-07 13:45:00', NULL, 1, 1),
+(6, 63, 7, '2024-03-07 13:45:00', NULL, 1, 1),
+(6, 1, 2, '2024-03-09 13:45:00', '2024-03-10 14:45:00', 2, 1),
+(6, 63, 2, '2024-03-07 13:45:00', NULL, 1, 1),
+(7, 8, 1, '2024-03-09 08:30:00', '2024-03-011 09:30:00', 3, 1),
+(8, 4, 3, '2024-03-10 06:00:00', '2024-03-12 06:00:00', 2, 1),
+(8, 58, 3, '2024-03-10 06:00:00', NULL, 1, 1),
+(9, 66, NULL, '2024-03-11 10:45:00', NULL, 1, 1),
+(9, 68, NULL, '2024-03-11 10:45:00', NULL, 2, 1),
+(9, 69, NULL, '2024-03-11 10:45:00', NULL, 1, 1),
+(10, 69, NULL, '2024-03-11 16:45:00', NULL, 1, 1)
